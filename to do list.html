@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>to do list</title>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <style>
+        body{
+            font-size:20px;
+            background-color:rgb(231,224,214);   
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        .notselected{
+            margin-right:5px;
+            width:14px;
+            cursor:pointer;
+
+        }
+
+        .selected{
+            display:none;
+            cursor:pointer;
+        }
+
+        #list{
+            width:400px;
+            margin:0 auto;
+        }
+
+        .detail{
+            border-radius:10px;
+            padding:10px;
+            margin:10px;
+            border:1px solid rgb(190,184,184);
+        }
+
+        #inputvalue{
+            border-radius:10px;
+            width:375px;
+            margin:10px;
+            line-height:40px;
+            outline:none;
+        }
+
+        #addbutton{
+            border-radius:8px;
+            color:white;
+            background-color:rgb(104,104,196);
+            width:100px;
+            margin-left:280px;
+            height:30px;
+            outline:none;
+        }
+
+    </style>
+</head>
+<body>
+    <h1> to do list</h1>
+    <div id="list">
+        <div class="detail"><img src="images/check.png" class="notselected">learning jquery</div>
+        <div class="detail"><img src="images/check.png" class="notselected">a date with dad </div>
+        <div class="detail"><img src="images/check.png" class="notselected">writting a diary</div>
+        <div id="add">
+        <input type="text" placeholder="+add a new item" id="inputvalue"/>
+        <input type="button" value="add confirm" id="addbutton"/>
+        </div>
+    </div>
+
+    <script>
+        $(function()
+            {
+            //click the circle,the text is shown as ckeckcircle plus line-through on the text
+            function line()
+                {
+                $(".notselected").on("click",function()
+                    {
+                    $(this).attr("src","images/certificate.png");
+                    $(this).parent().css(
+                        {
+                            "text-decoration":"line-through",
+                            "color":"grey"
+                        }
+                    );
+                    }
+                );
+                };
+
+            line();
+            
+            
+            
+            //add new item
+            $("#addbutton").on("click",function(){
+                var value=$("#inputvalue").val();//get the input value 
+                var $ckeckcircle=$('<img src="https://static1.bcjiaoyu.com/70d43381cb948313baa40dabd2e6235c_v.png-200x200" class="notselceted">');
+                var $newdiv= $('<div class="detail"></div>').text(value);//get the value of the new item from input-box
+                $newdiv = $newdiv.prepend("ckeckcircle");  //add circle before the new item
+                $("#add").before($newdiv);//add the new item in the list
+                $("#inputvalue").val(null);//clear the input-box
+                line();
+                });
+            }
+        );
+        
+    </script>
+</body>
+</html>
